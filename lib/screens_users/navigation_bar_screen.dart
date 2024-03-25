@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:map_flutter/screens/cuenta.dart';
-import 'map_screen.dart'; // Importa la pantalla del mapa
+import 'package:map_flutter/screens_users/cuenta.dart';
+
+import 'map_screen.dart';
 import 'parqueos_screen.dart';
 import 'reserva.dart';
 
@@ -13,10 +14,10 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
   int _currentIndex = 0;
 
   final List<Widget> _children = [
-    MapScreen(), // Pantalla del mapa
+    MapScreen(),
     ParqueosScreen(),
-    ReservaScreen(), // Placeholder para Reserva
-    CuentaScreen(), // Placeholder para Cuenta
+    ReservaScreen(),
+    CuentaScreen(),
   ];
 
   void onTabTapped(int index) {
@@ -27,22 +28,22 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
 
   @override
   Widget build(BuildContext context) {
+    Color primaryColor = Theme.of(context).primaryColor;
+
     return Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
-          canvasColor: Color(0xFF1a1c23), // Establece el color del fondo aquí
-          primaryColor:
-              Color(0xFF6d78d9), // Color cuando el ítem está seleccionado
+          canvasColor: Color(0xFF1b4ee4),
+          primaryColor: primaryColor,
           textTheme: Theme.of(context).textTheme.copyWith(
-                caption: TextStyle(
-                    color: Color(0xFF6d78d9).withOpacity(
-                        0.7)), // Color cuando el ítem no está seleccionado
+                caption: TextStyle(color: Colors.white.withOpacity(0.7)),
               ),
         ),
         child: BottomNavigationBar(
-          unselectedItemColor: Color(0xFF6d78d9).withOpacity(0.7),
-          selectedItemColor: Color(0xFF6d78d9),
+          type: BottomNavigationBarType.fixed,
+          unselectedItemColor: Colors.white.withOpacity(0.7),
+          selectedItemColor: Colors.white,
           currentIndex: _currentIndex,
           onTap: onTabTapped,
           items: const [
@@ -63,6 +64,10 @@ class _NavigationBarScreenState extends State<NavigationBarScreen> {
               label: 'Cuenta',
             ),
           ],
+          backgroundColor: Color(0xFF1b4ee4),
+          elevation: 20,
+          selectedLabelStyle: TextStyle(color: Colors.white),
+          unselectedLabelStyle: TextStyle(color: Colors.white.withOpacity(0.7)),
         ),
       ),
     );
