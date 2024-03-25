@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:map_flutter/screens_gerentes/create_account_gerente.dart';
 
 import 'login_screen.dart';
 
@@ -199,7 +200,9 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget _buildParkingRegistrationButton() {
     return InkWell(
       onTap: () {
-        // Logic for parking registration
+        Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => SignUpParkingPage()),
+        );
       },
       child: Center(
         child: Text(

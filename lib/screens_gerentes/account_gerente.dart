@@ -1,83 +1,79 @@
 import 'package:flutter/material.dart';
 
-class CuentaScreen extends StatefulWidget {
+class ParkingOwnerScreen extends StatefulWidget {
   @override
-  _CuentaScreenState createState() => _CuentaScreenState();
+  _ParkingOwnerScreenState createState() => _ParkingOwnerScreenState();
 }
 
-class _CuentaScreenState extends State<CuentaScreen> {
-  bool _darkTheme = false;
+class _ParkingOwnerScreenState extends State<ParkingOwnerScreen> {
+  bool _notificationsEnabled = false;
 
   @override
   Widget build(BuildContext context) {
-    Color primaryColor =
-        Color(0xFF1b4ee4); // Color principal utilizado en LoginPage
-    Color backgroundColor = Color(
-        0xFFe6e7f8); // Un color de fondo más claro que combine con el azul
-    Color textColor =
-        Colors.black; // Texto oscuro para contrastar con el fondo claro
+    Color primaryColor = Color(0xFF1b4ee4);
+    Color backgroundColor = Color(0xFFe6e7f8);
+    Color textColor = Colors.black;
 
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Cuenta',
+          'Cuenta del Dueño',
           style: TextStyle(color: textColor),
         ),
         backgroundColor: primaryColor,
       ),
       body: Container(
-        color: backgroundColor, // Aplicar un color de fondo claro
+        color: backgroundColor,
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
         child: Column(
           children: [
             CircleAvatar(
               radius: 50,
-              child: Icon(Icons.person, size: 60, color: textColor),
+              child: Icon(Icons.local_parking, size: 60, color: textColor),
               backgroundColor: primaryColor,
             ),
             SizedBox(height: 10),
             Text(
-              'Nombre Completo',
-              style: TextStyle(
-                  fontSize: 20, color: textColor, fontWeight: FontWeight.w500),
+              'Dueño del Parqueo',
+              style: TextStyle(fontSize: 20, color: textColor, fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 20),
             _buildListTile(
-              title: 'Editar datos personales',
-              icon: Icons.edit,
-              textColor: textColor,
-              onTap: () {
-                // Lógica para editar datos personales
-              },
-            ),
-            _buildListTile(
-              title: 'Notificaciones',
-              icon: Icons.notifications,
-              textColor: textColor,
-              onTap: () {
-                // Lógica para notificaciones
-              },
-            ),
-            _buildListTile(
-              title: 'Autos',
+              title: 'Gestionar plazas de parqueo',
               icon: Icons.directions_car,
               textColor: textColor,
               onTap: () {
-                // Lógica para autos
+                // Lógica para gestionar plazas de parqueo
+              },
+            ),
+            _buildListTile(
+              title: 'Ver historial de reservas',
+              icon: Icons.history,
+              textColor: textColor,
+              onTap: () {
+                // Lógica para ver historial de reservas
+              },
+            ),
+            _buildListTile(
+              title: 'Configuraciones de la cuenta',
+              icon: Icons.settings,
+              textColor: textColor,
+              onTap: () {
+                // Lógica para configuraciones de la cuenta
               },
             ),
             ListTile(
               title: Text(
-                'Dark theme',
+                'Notificaciones',
                 style: TextStyle(color: textColor),
               ),
               trailing: Switch(
-                value: _darkTheme,
+                value: _notificationsEnabled,
                 onChanged: (value) {
                   setState(() {
-                    _darkTheme = value;
+                    _notificationsEnabled = value;
                   });
-                  // Lógica para cambiar el tema
+                  // Lógica para cambiar el estado de las notificaciones
                 },
                 activeColor: primaryColor,
               ),
@@ -96,11 +92,7 @@ class _CuentaScreenState extends State<CuentaScreen> {
     );
   }
 
-  Widget _buildListTile(
-      {required String title,
-      required IconData icon,
-      required Color textColor,
-      required Function onTap}) {
+  Widget _buildListTile({required String title, required IconData icon, required Color textColor, required Function onTap}) {
     return ListTile(
       title: Text(
         title,
